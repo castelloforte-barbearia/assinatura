@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Assine · Castello Forte</title>
+<meta name="description" content="Assine o clube Castello Forte com Pix Automático. Sem fidelidade.">
+<meta name="theme-color" content="#111111">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@600;700&family=Public+Sans:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --bg:#111111; --panel:#1b1b1b; --line:#2e2e2e; --ink:#f3efe7; --muted:#a29d93;
+  --gold:#c9a25a; --gold-ink:#141008; --red:#f08080; --green:#7fd1a0;
+  --display:"Saira Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.45}
+.wrap{max-width:560px;margin:0 auto;padding:24px max(16px,env(safe-area-inset-left)) 48px max(16px,env(safe-area-inset-right));display:flex;flex-direction:column;gap:20px}
+header{display:flex;flex-direction:column;gap:6px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:700}
+h1{font-family:var(--display);font-size:40px;line-height:1;margin:0;letter-spacing:.01em}
+.lead{color:var(--muted);margin:0}
+.steps{display:flex;gap:6px}
+.steps span{flex:1;height:3px;border-radius:2px;background:var(--line)}
+.steps span.on{background:var(--gold)}
+h2{font-family:var(--display);font-size:24px;margin:0;letter-spacing:.01em}
+.planos{display:flex;flex-direction:column;gap:10px}
+.plano{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px;color:var(--ink);font:inherit;cursor:pointer}
+.plano:hover{border-color:#4a4a4a}
+.plano[aria-pressed="true"]{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold) inset}
+.plano b{display:block;font-size:16px}
+.plano small{display:block;color:var(--muted);font-size:13px;margin-top:2px}
+.preco{font-family:var(--display);font-size:24px;white-space:nowrap;color:var(--gold)}
+.preco em{font-style:normal;font-size:13px;color:var(--muted);font-family:var(--body)}
+form{display:flex;flex-direction:column;gap:14px}
+label{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:var(--muted)}
+input,select,textarea{font:inherit;font-size:16px;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px;width:100%}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:transparent}
+.unidades{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.un{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px 6px;color:var(--ink);font:inherit;font-weight:600;cursor:pointer;text-align:center}
+.un[aria-pressed="true"]{border-color:var(--gold);color:var(--gold);box-shadow:0 0 0 1px var(--gold) inset}
+.btn{appearance:none;border:0;border-radius:10px;padding:15px 18px;font:inherit;font-weight:700;font-size:16px;cursor:pointer;text-align:center;text-decoration:none;display:block;width:100%}
+.btn.gold{background:var(--gold);color:var(--gold-ink)}
+.btn.gold:disabled{opacity:.6;cursor:wait}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.err{color:var(--red);font-size:14px;margin:0;min-height:1em}
+.resumo{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:flex;justify-content:space-between;gap:12px;align-items:center}
+.resumo span{color:var(--muted);font-size:13px}
+.qr{display:flex;justify-content:center}
+.qr img{width:240px;height:240px;max-width:100%;background:#fff;padding:10px;border-radius:12px}
+textarea{font:13px/1.4 ui-monospace,Menlo,monospace;resize:none;word-break:break-all}
+ol{margin:0;padding-left:20px;color:var(--muted);display:flex;flex-direction:column;gap:6px}
+ol b{color:var(--ink)}
+.note{font-size:13px;color:var(--muted);margin:0}
+.wait{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--muted)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--gold);animation:p 1.4s infinite}
+@keyframes p{50%{opacity:.25}}
+@media (prefers-reduced-motion:reduce){.dot{animation:none}}
+.ok{text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center;padding:24px 0}
+.ok .ic{width:64px;height:64px;border-radius:50%;background:var(--green);color:#0c2416;display:grid;place-items:center;font-size:34px;font-weight:700}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+footer{color:var(--muted);font-size:12px;text-align:center;border-top:1px solid var(--line);padding-top:16px}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="eyebrow">Castello Forte Barbearia</span>
+    <h1>Clube de assinatura</h1>
+    <p class="lead">Escolha seu plano e pague com Pix Automático. A mensalidade é debitada sozinha todo mês. Sem fidelidade.</p>
+  </header>
+  <div class="steps" aria-hidden="true"><span id="s1" class="on"></span><span id="s2"></span><span id="s3"></span></div>
+
+  <!-- 1. Plano -->
+  <section id="passo1">
+    <h2>1. Escolha o plano</h2>
+    <div class="planos" id="planos" style="margin-top:12px"><p class="note">Carregando planos…</p></div>
+  </section>
+
+  <!-- 2. Dados -->
+  <section id="passo2" hidden>
+    <div class="resumo" id="resumo1"></div>
+    <h2 style="margin:18px 0 12px">2. Seus dados</h2>
+    <form id="form" novalidate>
+      <label>Nome completo<input id="nome" autocomplete="name" required></label>
+      <label>CPF<input id="cpf" inputmode="numeric" autocomplete="off" placeholder="000.000.000-00" required></label>
+      <label>WhatsApp com DDD<input id="tel" inputmode="tel" autocomplete="tel" placeholder="(22) 99999-9999" required></label>
+      <label>E-mail <span style="font-weight:400">(para receber o comprovante)</span><input id="email" type="email" autocomplete="email" placeholder="voce@email.com"></label>
+      <div class="hp" aria-hidden="true"><label>Site<input id="site" tabindex="-1" autocomplete="off"></label></div>
+      <label>Unidade onde você corta</label>
+      <div class="unidades" id="unidades" style="margin-top:-6px"></div>
+      <p class="err" id="erro" role="alert"></p>
+      <button class="btn gold" id="go" type="submit">Gerar Pix</button>
+      <button class="btn ghost" id="voltar" type="button">Trocar plano</button>
+    </form>
+  </section>
+
+  <!-- 3. Pix -->
+  <section id="passo3" hidden>
+    <div class="resumo" id="resumo2"></div>
+    <h2 style="margin:18px 0 12px">3. Pague e autorize</h2>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <ol>
+        <li>Copie o código abaixo (ou leia o QR Code).</li>
+        <li>No app do seu banco, vá em <b>Pix → Pix Copia e Cola</b>.</li>
+        <li>Pague o 1º mês e <b>confirme a autorização do Pix Automático</b>. Nos próximos meses, o débito é automático.</li>
+      </ol>
+      <label>Pix Copia e Cola<textarea id="codigo" rows="4" readonly></textarea></label>
+      <button class="btn gold" id="copiar" type="button">Copiar código Pix</button>
+      <div class="qr" id="qrbox"></div>
+      <p class="note" id="validade"></p>
+      <div class="wait"><span class="dot"></span><span>Assim que o pagamento cair, esta página confirma sozinha.</span></div>
+    </div>
+  </section>
+
+  <!-- 4. Pronto -->
+  <section id="passo4" hidden>
+    <div class="ok">
+      <div class="ic">✓</div>
+      <h2>Assinatura ativa!</h2>
+      <p class="lead" id="okmsg"></p>
+    </div>
+  </section>
+
+  <footer>Castello Forte Barbearia · Cabo Frio · Rio das Ostras · Búzios<br>Pagamento processado pelo Asaas. Você pode cancelar o Pix Automático pelo app do seu banco ou falando com a recepção.</footer>
+</div>
+
+<script>
+const API="https://xnsychfbkxowgcapiyih.supabase.co/functions/v1/adesao";
+const q=new URLSearchParams(location.search);
+let planos=[],unidades=[],plano=null,unidade=q.get("unidade")||"",adesaoId=null,timer=null;
+const $=id=>document.getElementById(id);
+const brl=v=>Number(v).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const dig=s=>String(s).replace(/\D/g,"");
+function passo(n){[1,2,3,4].forEach(i=>{$("passo"+i).hidden=i!==n});[1,2,3].forEach(i=>$("s"+i).classList.toggle("on",i<=Math.min(n,3)));window.scrollTo({top:0,behavior:"smooth"})}
+function resumo(){return `<div><span>Plano</span><br><b>${esc(plano.nome)}</b>${unidade?`<br><span>${esc(unidade)}</span>`:""}</div><div class="preco">${brl(plano.valor)}<em>/mês</em></div>`}
+
+async function carregar(){
+  try{
+    const r=await fetch(API+"?acao=planos");const d=await r.json();
+    planos=d.planos||[];unidades=d.unidades||[];
+    if(!planos.length){$("planos").innerHTML=`<p class="note">Nenhum plano disponível no momento. Fale com a recepção.</p>`;return}
+    $("planos").innerHTML=planos.map(p=>`<button class="plano" type="button" data-p="${esc(p.id)}" aria-pressed="false"><span><b>${esc(p.nome)}</b>${p.beneficios?`<small>${esc(p.beneficios)}</small>`:""}</span><span class="preco">${brl(p.valor)}<em>/mês</em></span></button>`).join("");
+    $("unidades").innerHTML=unidades.map(u=>`<button class="un" type="button" data-u="${esc(u)}" aria-pressed="${u===unidade}">${esc(u)}</button>`).join("");
+    const pre=planos.find(p=>p.id===q.get("plano"));if(pre)escolher(pre);
+  }catch(_){$("planos").innerHTML=`<p class="err">Não consegui carregar os planos. Confira sua internet e recarregue a página.</p>`}
+}
+function escolher(p){plano=p;$("resumo1").innerHTML=resumo();passo(2);setTimeout(()=>$("nome").focus(),300)}
+document.addEventListener("click",e=>{
+  const b=e.target.closest("[data-p]");if(b){escolher(planos.find(p=>p.id===b.dataset.p));return}
+  const u=e.target.closest("[data-u]");if(u){unidade=u.dataset.u;document.querySelectorAll("[data-u]").forEach(x=>x.setAttribute("aria-pressed",x===u));$("resumo1").innerHTML=resumo()}
+});
+$("voltar").onclick=()=>passo(1);
+$("cpf").oninput=e=>{let d=dig(e.target.value).slice(0,11);e.target.value=d.replace(/(\d{3})(\d)/,"$1.$2").replace(/(\d{3})(\d)/,"$1.$2").replace(/(\d{3})(\d{1,2})$/,"$1-$2")};
+$("tel").oninput=e=>{let d=dig(e.target.value).slice(0,11);e.target.value=d.length>10?d.replace(/(\d{2})(\d{5})(\d{0,4})/,"($1) $2-$3"):d.replace(/(\d{2})(\d{0,4})(\d{0,4})/,(m,a,b,c)=>`(${a}) ${b}${c?"-"+c:""}`)};
+
+$("form").onsubmit=async e=>{
+  e.preventDefault();$("erro").textContent="";
+  if($("nome").value.trim().split(/\s+/).length<2)return $("erro").textContent="Coloque seu nome completo.";
+  if(dig($("cpf").value).length!==11)return $("erro").textContent="Confira o CPF.";
+  if(dig($("tel").value).length<10)return $("erro").textContent="Coloque o WhatsApp com DDD.";
+  if(!unidade)return $("erro").textContent="Escolha a unidade onde você corta.";
+  $("go").disabled=true;$("go").textContent="Gerando Pix…";
+  try{
+    const r=await fetch(API,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({nome:$("nome").value,cpf:$("cpf").value,telefone:$("tel").value,email:$("email").value,unidade,plano:plano.id,site:$("site").value})});
+    const d=await r.json();
+    if(!r.ok||d.erro)throw new Error(d.erro||"Não foi possível gerar o Pix.");
+    adesaoId=d.id;
+    $("resumo2").innerHTML=resumo();
+    $("codigo").value=d.payload;
+    $("qrbox").innerHTML=d.qr?`<img alt="QR Code do Pix" src="data:image/png;base64,${d.qr}">`:"";
+    $("validade").textContent=d.expira_em?`Este Pix vale até ${d.expira_em.slice(8,10)}/${d.expira_em.slice(5,7)} às ${d.expira_em.slice(11,16)}.`:"";
+    passo(3);vigiar();
+  }catch(err){$("erro").textContent=err.message}
+  finally{$("go").disabled=false;$("go").textContent="Gerar Pix"}
+};
+$("copiar").onclick=async()=>{try{await navigator.clipboard.writeText($("codigo").value);$("copiar").textContent="Código copiado ✓"}catch(_){$("codigo").select();document.execCommand&&document.execCommand("copy");$("copiar").textContent="Código selecionado"}setTimeout(()=>$("copiar").textContent="Copiar código Pix",2500)};
+function vigiar(){clearInterval(timer);let n=0;timer=setInterval(async()=>{if(++n>240){clearInterval(timer);return}
+  try{const r=await fetch(API+"?acao=status&id="+adesaoId);const d=await r.json();
+    if(d.status==="PAGA"){clearInterval(timer);$("okmsg").textContent=`Bem-vindo ao clube, ${$("nome").value.trim().split(" ")[0]}! Seu plano ${plano.nome} já está ativo na unidade ${unidade}. É só agendar e aparecer.`;passo(4)}}catch(_){}},5000)}
+carregar();
+</script>
+</body>
+</html>
