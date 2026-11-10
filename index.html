@@ -171,13 +171,13 @@ function resumo(){return `<div><span>Plano</span><br><b>${esc(plano.nome)}</b>${
 
 async function carregar(){
   try{
-    const r=await fetch(API+"?acao=planos");const d=await r.json();
+    const r=await fetch(API+"?acao=planos"+(q.get("p")?"&p="+encodeURIComponent(q.get("p")):""));const d=await r.json();
     planos=d.planos||[];unidades=d.unidades||[];
     if(!planos.length){$("planos").innerHTML=`<p class="note">Nenhum plano disponível no momento. Fale com a recepção.</p>`;return}
     const fam=n=>String(n).split(/\s*[·-]\s*/)[0].trim();let ult="";
     $("planos").innerHTML=planos.map(p=>{const f=fam(p.nome);const cab=f!==ult?`<div class="familia">Plano ${esc(f)}</div>`:"";ult=f;return cab+`<button class="plano" type="button" data-p="${esc(p.id)}" aria-pressed="false"><span><b>${esc(String(p.nome).replace(/^[^·-]+[·-]\s*/,"")||p.nome)}</b>${p.beneficios?`<small>${esc(p.beneficios)}</small>`:""}</span><span class="preco">${brl(p.valor)}<em>/mês</em></span></button>`}).join("");
     $("unidades").innerHTML=unidades.map(u=>`<button class="un" type="button" data-u="${esc(u)}" aria-pressed="${u===unidade}">${esc(u)}</button>`).join("");
-    const pre=planos.find(p=>p.id===q.get("plano"));if(pre)escolher(pre);
+    const pre=planos.find(p=>p.id===(q.get("plano")||d.destaque));if(pre)escolher(pre);
   }catch(_){$("planos").innerHTML=`<p class="err">Não consegui carregar os planos. Confira sua internet e recarregue a página.</p>`}
 }
 function escolher(p){plano=p;$("resumo1").innerHTML=resumo();passo(2);setTimeout(()=>$("nome").focus(),300)}
@@ -197,7 +197,7 @@ $("form").onsubmit=async e=>{
   if(!unidade)return $("erro").textContent="Escolha a unidade onde você corta.";
   $("go").disabled=true;$("go").textContent="Gerando Pix…";
   try{
-    const r=await fetch(API,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({nome:$("nome").value,cpf:$("cpf").value,telefone:$("tel").value,email:$("email").value,unidade,plano:plano.id,site:$("site").value})});
+    const r=await fetch(API,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({nome:$("nome").value,cpf:$("cpf").value,telefone:$("tel").value,email:$("email").value,unidade,plano:plano.id,codigo:q.get("p")||"",site:$("site").value})});
     const d=await r.json();
     if(!r.ok||d.erro)throw new Error(d.erro||"Não foi possível gerar o Pix.");
     adesaoId=d.id;
